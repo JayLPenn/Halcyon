@@ -1,10 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://deeaqurg5lapn"]
+[gd_scene load_steps=6 format=3 uid="uid://deeaqurg5lapn"]
 
-[ext_resource type="Script" path="res://-Khepri/Systems/Unit.cs" id="1_xlw7h"]
+[ext_resource type="PackedScene" uid="uid://ds5fvdmuxku25" path="res://-Khepri/Resources/Nodes/Unit.tscn" id="1_d5723"]
+[ext_resource type="Script" path="res://-Khepri/Systems/Units/UnitController.cs" id="1_m7r5m"]
+[ext_resource type="Texture2D" uid="uid://87v04wiyg36t" path="res://-Khepri/Resources/Sprites/placeholder.png" id="2_44wqe"]
+[ext_resource type="Environment" uid="uid://brwxvodfww8r0" path="res://-Khepri/Resources/Miscellaneous/MainEnvironment.tres" id="3_gvkjo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bev5a"]
+size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Main" type="Node"]
 
 [node name="Word" type="Node3D" parent="."]
 
-[node name="Unit" type="Node3D" parent="Word"]
-script = ExtResource("1_xlw7h")
+[node name="Units" type="Node3D" parent="Word" node_paths=PackedStringArray("_playerUnit")]
+script = ExtResource("1_m7r5m")
+_playerUnit = NodePath("Unit")
+
+[node name="Unit" parent="Word/Units" node_paths=PackedStringArray("_sprite", "_collisionShape", "_rayCaster") instance=ExtResource("1_d5723")]
+_sprite = NodePath("Sprite3D")
+_collisionShape = NodePath("CollisionShape3D")
+_rayCaster = NodePath("RayCast3D")
+
+[node name="Area3D" type="CharacterBody3D" parent="Word"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Word/Area3D"]
+shape = SubResource("BoxShape3D_bev5a")
+
+[node name="Sprite3D" type="Sprite3D" parent="Word/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+pixel_size = 0.0156
+texture = ExtResource("2_44wqe")
+
+[node name="Area3D2" type="CharacterBody3D" parent="Word"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Word/Area3D2"]
+shape = SubResource("BoxShape3D_bev5a")
+
+[node name="Sprite3D" type="Sprite3D" parent="Word/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+pixel_size = 0.0156
+texture = ExtResource("2_44wqe")
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_gvkjo")
