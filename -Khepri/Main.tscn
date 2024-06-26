@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://deeaqurg5lapn"]
+[gd_scene load_steps=2 format=3 uid="uid://deeaqurg5lapn"]
+
+[ext_resource type="Script" path="res://-Khepri/Systems/Unit.cs" id="1_xlw7h"]
 
 [node name="Main" type="Node"]
+
+[node name="Word" type="Node3D" parent="."]
+
+[node name="Unit" type="Node3D" parent="Word"]
+script = ExtResource("1_xlw7h")
