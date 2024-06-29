@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://87v04wiyg36t" path="res://-Khepri/Resources/Sprites/placeholder.png" id="2_44wqe"]
 [ext_resource type="Environment" uid="uid://brwxvodfww8r0" path="res://-Khepri/Resources/Miscellaneous/MainEnvironment.tres" id="3_gvkjo"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bev5a"]
-size = Vector3(0.5, 0.5, 0.5)
+[sub_resource type="SphereShape3D" id="SphereShape3D_sh7fy"]
+radius = 0.4
 
 [node name="Main" type="Node"]
 
@@ -25,7 +25,7 @@ _rayCaster = NodePath("RayCast3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Word/Area3D"]
-shape = SubResource("BoxShape3D_bev5a")
+shape = SubResource("SphereShape3D_sh7fy")
 
 [node name="Sprite3D" type="Sprite3D" parent="Word/Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -36,7 +36,7 @@ texture = ExtResource("2_44wqe")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Word/Area3D2"]
-shape = SubResource("BoxShape3D_bev5a")
+shape = SubResource("SphereShape3D_sh7fy")
 
 [node name="Sprite3D" type="Sprite3D" parent="Word/Area3D2"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
